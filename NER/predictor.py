@@ -11,7 +11,7 @@ nlp = spacy.load('en_core_web_sm')
 # your model artifacts should be stored in /opt/ml/model/
 
 
-# The flask app for serving predictions
+# The flask app_local for serving predictions
 app = Flask(__name__)
 
 
@@ -29,6 +29,7 @@ def transformation():
     input_json = flask.request.get_json()
     resp = input_json['input']
 
+    #TODO: call private ai process_request
     # NER
     doc = nlp(resp)
     entities = [(X.text, X.label_) for X in doc.ents]

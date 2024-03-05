@@ -22,6 +22,8 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && \
 RUN pip install spacy
 RUN python -m spacy download en
 
+RUN apt-get update && \
+    apt-get install -y iputils-ping
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=TRUE
@@ -31,5 +33,4 @@ ENV PATH="/opt/program:${PATH}"
 COPY NER /opt/program
 WORKDIR /opt/program
 
-#TODO: what is the command to start the vendor container?
 ENTRYPOINT ["serve"]
